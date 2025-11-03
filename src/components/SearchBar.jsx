@@ -18,6 +18,7 @@ export default function SearchBar() {
       setWeatherData(null);
     }
   };
+git push origin your-branch
 
   return (
     <div>
