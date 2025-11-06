@@ -13,12 +13,12 @@ export default function SearchBar() {
     try {
       const response = await axios.get(`${apiUrl}?q=${city}&appid=${apiKey}&units=metric`);
       setWeatherData(response.data);
+      console.log("im your data",setWeatherData)
     } catch (error) {
       console.error("Error fetching weather:", error);
       setWeatherData(null);
     }
   };
-git push origin your-branch
 
   return (
     <div>
