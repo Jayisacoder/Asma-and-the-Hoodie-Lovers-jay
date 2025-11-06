@@ -1,0 +1,221 @@
+/* Reset some default browser styles */
+
+
+/* Body styling */
+
+
+body{
+  background-image: url(/public/might.jpg);
+}
+
+/* Input field */
+input[type="text"] {
+  padding: 0.5rem;
+  width: 70%;
+  border: 1px solid #cebbbb;
+  border-radius: 5px;
+  margin-right: 0.5rem;
+}
+
+/* Button */
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #1976d2;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #115293;
+}
+
+/* Weather card */
+.weather-card {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #e3f2fd;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.weather-card h2 {
+  margin-bottom: 0.5rem;
+}
+
+.weather-card p {
+  margin: 0.25rem 0;
+}
+
+
+.MainPage{
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.352);
+  height: 800px;
+  width: 3000px;
+}
+.MainPage text{
+background-color: rgb(22, 33, 33);
+}
+
+.weather-nav{
+  display:grid;
+  background-color: rgb(27, 27, 215);
+  height: 90px;
+  width: 3000px;
+  text-align: center;
+  font-size: 2rem;
+  z-index: 1;
+}
+
+
+.weather-nav-text{
+  background-color: aliceblue;
+  height: 590px;
+ 
+  
+}
+
+.weather-app-status{
+  justify-content: space-between;
+  align-items:center;
+  height: 60vh;
+  width: 120vh;
+  padding: 10px;
+  flex-direction:row;
+  position: relative;
+  top: 120px;
+  background-color: rgba(10, 133, 241, 0.144);
+
+}
+
+ .status-dates{
+  font-size: 1.5rem;
+}
+
+.weather-app-status table {
+  border-collapse:collapse;
+  width: 60%;
+  margin:20px auto;
+}
+
+.weather-app-status th{
+  background-color: rgb(113, 128, 141);
+}
+
+.weather-app-status th, td{
+  border-bottom: 1px solid;
+  padding: 20px;
+  text-align: center;
+  font-size:1.3rem;
+  font-weight: 200;
+
+}
+
+tr:hover {
+    background-color: #f9f9f9;
+  }
+
+.Firstpage-Nav{
+  background-color: rgba(8, 30, 226, 0.917);
+  height: 63px;
+  margin-top: 2%;
+  position: relative;
+  bottom: 5px;
+
+}
+
+.page-nav-text{
+  background-color: rgba(249, 250, 244, 0.397);
+  height: 630px;
+  margin-top: 3%;
+  position: relative;
+  bottom: 5px;
+}
+
+.weather-app-panel{
+  display:flex;
+  justify-content: space-between ;
+  align-items:center;
+  height: 60vh;
+  width: 60vh;
+  padding: 10px;
+  border: 0.5px solid;
+  flex-direction: column;
+  position: relative;
+  top: 60px;
+  background-color: rgba(36, 44, 162, 0.135);
+  border-end-end-radius: 90px;
+  border-end-start-radius: 90px;
+}
+
+.box{
+  padding: 20px 40px;
+  font-size: 1.7rem;
+}
+
+.boxnum{
+  padding: 20px 40px;
+  font-size: 8.3rem;
+}
+
+.City{
+  background-color: beige;
+
+}
+.temature{
+  background-color: beige;
+  
+}
+.Day-Type{
+  background-color: beige;
+
+}
+/*========================================================================================================================================*/
+/*========================================================================================================================================*/
+/*===============================================/*Second Page=============================================================================
+/*========================================================================================================================================*/
+/*========================================================================================================================================*/
+/*========================================================================================================================================*/
+
+
+
+.dates {
+  height:max-content;
+  width: min-content;
+  background-color: rgba(10, 194, 240, 0.078);
+  position: relative;
+  padding: 20px;
+  left: 1600px;
+}
+
+.date-slots{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  flex: 1;
+}
+
+.slot{
+  flex-direction: row;
+  min-width: 200px;
+  background-color: rgb(172, 196, 217);
+  border: 1px solid slategrey;
+  border-radius: 12px;
+  text-align: center;
+  height: 300px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-size: 1.4rem;
+
+}
+
+.bottomslot{
+  padding: 35px;
+  background-color: aliceblue;
+  text-align: center;
+  border-radius: 8px;
+  margin-top: 12px;
+  width: 1009px;
+  font: 2em sans-serif;
+}
