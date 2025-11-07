@@ -1,92 +1,105 @@
 
-
+// Main weather display component - shows current conditions and weekly forecast
 export default function WeatherCard({ data }) {
-  const timestamp = data.dt; // from API
-  const date = new Date(timestamp * 1000); // multiply by 1000 to convert seconds → milliseconds
-  const day = date.toLocaleDateString("en-US", { weekday: "long" }); // "Monday"
-  const month = date.toLocaleDateString("en-US", { month: "long" }); // "October"
-  const time = date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" }); // "3:42 PM"
-  
- 
+  // Safety check - don't try to render if we don't have complete weather data yet
+  // This prevents those annoying "cannot read property of undefined" errors
+  if (!data || !data.main || !data.weather || !data.weather[0]) {
+    return <div>Enter a city name and click Search to see weather data</div>;
+  }
 
+  // Debug logs - helpful for troubleshooting when temps aren't showing up right
+  console.log("Weather data in WeatherCard:", data); 
+  console.log("Raw temperature:", data.main.temp);
+  console.log("City name:", data.name);
+
+  // Convert API data to display-friendly numbers
+  // Using Math.round because nobody needs to see "47.3 degrees"
+  const temp = Math.round(data.main.temp);
+  const feelsLike = Math.round(data.main.feels_like);
+  const windSpeed = Math.round(data.wind?.speed || 0); // The ?. handles missing wind data gracefully
+  const windGusts = Math.round(data.wind?.gust || 0);
+  const humidity = Math.round(data.main.humidity);
+
+  console.log("Processed temperature:", temp);
+  console.log("Processed city:", data.name);
 
   return (
-    <>
-    <div className="weather-nav">Todays Weather 
-  <div className="MainPage">
-    <div className="navbar">
-      <sub className="weather-nav-text"> </sub>
-    </div>
-  <div className="Firstpage-Nav">Todays Weather 
-    <div className="page-nav-text">.
-      <div className="weather-app-panel">
-          <div className="box"> {data.name || "Philadelphia"} </div>
-          <div className="boxnum"> {data.main.temp || 57} °C </div>
-          <div className="box"> {data.weather[0].description || "Mostly Cloudy Today"} </div> 
+    <div className="MainPage">
+      {/* Left side - Current weather conditions */}
+      <div>
+        <div className="weather-nav">Today's Weather</div>
+        <div className="weather-nav-text">
+          {/* Main weather display - city, temp, conditions */}
+          <div className="weather-app-panel">
+            <div className="box">{data.name}</div>
+            <div className="boxnum">{temp}°F</div> {/* Big temperature display */}
+            <div className="box">{data.weather[0].description}</div> {/* "partly cloudy", etc. */}
+          </div>
+          
+          {/* Additional weather details in a table format */}
+          {/* TODO: Maybe replace this table with CSS grid later for better mobile responsiveness */}
+          <div className="weather-app-status">
+            <table>
+              <tbody>
+                <tr>
+                  <td className="status">Feels Like:</td>
+                  <td className="status">{feelsLike}°F</td>
+                </tr>
+                <tr>
+                  <td className="status">Wind:</td>
+                  <td className="status">{windSpeed} mph</td>
+                </tr>
+                <tr>
+                  <td className="status">Wind Gusts:</td>
+                  <td className="status">{windGusts} mph</td>
+                </tr>
+                <tr>
+                  <td className="status">Air Quality:</td>
+                  <td className="status">poor</td> {/* Hard-coded for now - API doesn't include this */}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
+
+      {/* Right side - Weekly forecast (mock data for now) */}
+      <div>
+        <div className="Firstpage-Nav">Philadelphia weather this week</div>
+        <div className="page-nav-text">
+          {/* 5-day temperature forecast - these are placeholder values */}
+          {/* In the future, we could get this from a different API endpoint */}
+          <div className="date-slots">
+            <div className="slot">57</div> {/* Mon */}
+            <div className="slot">58</div> {/* Tue */}
+            <div className="slot">65</div> {/* Wed */}
+            <div className="slot">65</div> {/* Thu */}
+            <div className="slot">67</div> {/* Fri */}
+          </div>
+          
+          {/* Duplicate weather info in a different layout - matches the wireframe design */}
+          <div className="bottomslot">
+            <div className="weather-details">
+              <div className="weather-detail">
+                <span>Air Quality:</span>
+                <span>poor</span> {/* Still hard-coded */}
+              </div>
+              <div className="weather-detail">
+                <span>Feels like:</span>
+                <span>{feelsLike}°F</span>
+              </div>
+              <div className="weather-detail">
+                <span>Wind Gusts:</span>
+                <span>{windGusts} mph</span>
+              </div>
+              <div className="weather-detail">
+                <span>Wind:</span>
+                <span>{windSpeed} mph</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-       
-  <div className="Firstpage-Nav">
-    <div className="page-nav-text">THE WEATHER APP
-      <table className="weather-app-status">
-        <thead>
-        <tr>
-          <th className="status-dates"> {month || "10/"}</th>
-          <th className="status-dates"> {day || "26/"}</th>
-           <th className="status-dates"> {time || "8:00/"}</th>
-        </tr>
-      </thead>
-      
-    <tbody>
-        <tr>
-          <td className="status"> Feels Like </td>
-          <td className="status"> {data.main.feels_like || " 58"} </td>
-        </tr>
-        
-
-        <tr>
-          <td className="status"> Wind </td>
-          <td className="status"> {data.wind.deg || "  5"} mph </td>
-        </tr>
-
-        <tr>
-          <td className="status"> Wind Gusts </td>
-          <td className="status"> {data.wind.gust || " 4"} mph </td>
-        </tr>
-
-        <tr>
-          <td className="status"> Air Quality</td>
-          <td className="status"> {data.main.humidity || " poor"}</td>
-        </tr>
-        </tbody>
-      </table>
-      </div>
-      </div>
-      
-    </div>
-</div>
-
-<div className="dates">
-    <div className="date-slots">
-      <div className="slot">Wed</div>
-       <div className="slot">Thu</div>
-        <div className="slot">Fri</div>
-         <div className="slot">Sat</div>
-          <div className="slot">Sun</div>
-    </div>
-    
-
-    <div className="bottomslot">
-      <p>The weather forcast</p>
-      <button>TODAY</button>
-    </div>
-  </div>
-  </>
-   
-
-
-    
   );
 }
